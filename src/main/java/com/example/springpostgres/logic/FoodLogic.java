@@ -10,7 +10,7 @@ import java.util.List;
 public class FoodLogic {
     @Autowired
     private FoodRepository foodRepository;
-    public List<Food> getAccounts(){
+    public List<Food> getFoods(){
         return foodRepository.findAll();
     }
 
