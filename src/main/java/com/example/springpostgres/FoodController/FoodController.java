@@ -9,6 +9,8 @@ import com.example.springpostgres.entity.Food;
 import com.example.springpostgres.repository.FoodRepository;
 
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/foods")
 public class FoodController {
@@ -17,15 +19,27 @@ public class FoodController {
     @Autowired
     private FoodLogic foodLogic;
 
+//    @GetMapping()
+//    @ResponseBody()
+//    public List<Food> food(){
+//        return foodLogic.getFoods();
+//    }
+
     @GetMapping()
-    @ResponseBody()
-    public List<Food> food(){
-        return foodLogic.getFoods();
+    public List<Food> showFood(){
+        return FOODS.findAll();
     }
+    //SHOW individual food
+    @GetMapping("/{id}")
+    public Optional<Food> showAFood(@PathVariable int id){
+        return FOODS.findById(id);
+    }
+
 
     @PostMapping
     public List<Food> createFood(@RequestBody Food newFood){
         FOODS.save(newFood);
         return FOODS.findAll();
     }
+
 }
