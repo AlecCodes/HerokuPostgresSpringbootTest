@@ -42,4 +42,22 @@ public class FoodController {
         return FOODS.findAll();
     }
 
+    //PUT route
+    @PutMapping("/{id}")
+    public Optional<Food> updateFood(@RequestBody Food updatedFood, @PathVariable int id){
+        FOODS.findById(id)
+                .map(food -> {
+                    food.setCarbs(updatedFood.getCarbs());
+                    food.setDate(updatedFood.getDate());
+                    food.setName(updatedFood.getName());
+                    return FOODS.save(food);
+                })
+                .orElseGet(() -> {
+                    return FOODS.save(updatedFood);
+                });
+        return FOODS.findById(id);
+    }
+
+
+
 }
