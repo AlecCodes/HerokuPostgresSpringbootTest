@@ -1,13 +1,12 @@
 package com.example.springpostgres.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "FOODS")
 public class Food {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "foods_generator")
+    @SequenceGenerator(name = "foods_generator", sequenceName = "foods_seq", allocationSize = 1)
+    //@Column(name = "id")
     private int id;
     private String name;
     private int carbs;

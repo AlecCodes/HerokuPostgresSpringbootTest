@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("/foods")
 public class FoodController {
     public FoodRepository FOODS;
+    public FoodController(FoodRepository FOODS){this.FOODS = FOODS;}
     @Autowired
     private FoodLogic foodLogic;
 
@@ -22,7 +23,7 @@ public class FoodController {
         return foodLogic.getFoods();
     }
 
-    @PostMapping("/foods")
+    @PostMapping
     public List<Food> createFood(@RequestBody Food newFood){
         FOODS.save(newFood);
         return FOODS.findAll();
