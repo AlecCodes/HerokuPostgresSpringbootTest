@@ -58,6 +58,11 @@ public class FoodController {
         return FOODS.findById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public Optional<Food> deleteFood(@PathVariable Integer id){
+        FOODS.deleteById(id);
+        return FOODS.findById(id);
+    }
 
 
 }
