@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import com.example.springpostgres.entity.Food;
+import com.example.springpostgres.repository.FoodRepository;
 
 import java.util.List;
 @RestController
 @RequestMapping("/foods")
 public class FoodController {
+    public FoodRepository FOODS;
     @Autowired
     private FoodLogic foodLogic;
 
@@ -20,4 +22,9 @@ public class FoodController {
         return foodLogic.getFoods();
     }
 
+    @PostMapping("/foods")
+    public List<Food> createFood(@RequestBody Food newFood){
+        FOODS.save(newFood);
+        return FOODS.findAll();
+    }
 }
