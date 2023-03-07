@@ -19,17 +19,17 @@ public class FoodController {
     @Autowired
     private FoodLogic foodLogic;
 
-//    @GetMapping()
-//    @ResponseBody()
-//    public List<Food> food(){
-//        return foodLogic.getFoods();
-//    }
-
     @GetMapping()
     public List<Food> showFood(){
         return FOODS.findAll();
     }
     //SHOW individual food
+
+    @GetMapping("/hello")
+    public String helloWorld(){
+        return "Hello World~";
+    }
+
     @GetMapping("/{id}")
     public Optional<Food> showAFood(@PathVariable int id){
         return FOODS.findById(id);
