@@ -19,30 +19,35 @@ public class FoodController {
     @Autowired
     private FoodLogic foodLogic;
 
+    @CrossOrigin
     @GetMapping()
     public List<Food> showFood(){
         return FOODS.findAll();
     }
     //SHOW individual food
 
+    @CrossOrigin
     @GetMapping("/hello")
     public String helloWorld(){
         return "Hello World~";
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public Optional<Food> showAFood(@PathVariable int id){
         return FOODS.findById(id);
     }
 
-
+    @CrossOrigin
     @PostMapping
     public List<Food> createFood(@RequestBody Food newFood){
         FOODS.save(newFood);
         return FOODS.findAll();
     }
 
+
     //PUT route
+    @CrossOrigin
     @PutMapping("/{id}")
     public Optional<Food> updateFood(@RequestBody Food updatedFood, @PathVariable int id){
         FOODS.findById(id)
@@ -58,6 +63,7 @@ public class FoodController {
         return FOODS.findById(id);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public Optional<Food> deleteFood(@PathVariable Integer id){
         FOODS.deleteById(id);
