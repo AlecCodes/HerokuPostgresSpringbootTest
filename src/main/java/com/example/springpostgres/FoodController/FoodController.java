@@ -38,6 +38,7 @@ public class FoodController {
         return FOODS.findById(id);
     }
 
+
     @CrossOrigin
     @PostMapping
     public List<Food> createFood(@RequestBody Food newFood){
